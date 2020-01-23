@@ -18,15 +18,17 @@ function make_ics(dates){
 
 function extract_to_ics(tab){
             
-        alert('sending message to '+tab.url);
+    alert('sending message to '+tab.url);
+    
+    var dates = [];
+    
+    chrome.tabs.executeScript(tab.id, {file: './js/extract.js'}, function(result){
+        dates = result[0];
         
-        var dates = [];
-        
-        chrome.tabs.executeScript(tab.id, {file: './js/extract.js'}, function(result){
-            dates = result[0];
-            alert(result);
-            make_ics(dates);
-        });
+        alert(result);
+
+        make_ics(dates);
+    });
 };
 
 document.addEventListener('DOMContentLoaded', function(){
