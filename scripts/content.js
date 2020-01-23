@@ -1,3 +1,4 @@
+/*
 console.log('a');
 function extract(){
     alert('Extracting!');
@@ -12,3 +13,4 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
     sendResponse({success: true});
 
 });
+*/

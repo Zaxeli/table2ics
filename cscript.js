@@ -1,22 +1,29 @@
 'use strict';
 
+var doc;
+var _course;
 
-var doc = (document.getElementById('ptifrmtgtframe')?document.getElementById('ptifrmtgtframe').contentWindow.document:document);
-var _course = 'win0divDERIVED_REGFRM1_DESCR20$';
+function extract(){
 
-var courses = [];
-var i = 0;
+    doc = (document.getElementById('ptifrmtgtframe')?document.getElementById('ptifrmtgtframe').contentWindow.document:document);
+    _course = 'win0divDERIVED_REGFRM1_DESCR20$';
 
-var course;
+    var courses = [];
+    var i = 0;
 
-while(course = doc.getElementById(_course+i)){
+    var course;
 
-	var bana = get_course(i);
-	
-	courses.push(bana);
-    console.log(bana);
-	
-    i++;
+    while(course = doc.getElementById(_course+i)){
+
+        var bana = get_course(i);
+        
+        courses.push(bana);
+        console.log(bana);
+        
+        i++;
+    }
+
+    return courses;
 }
 
 function get_course(course_no){
@@ -152,3 +159,5 @@ function parse_time(time){
     }
     
 }
+
+extract();
