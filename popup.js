@@ -78,32 +78,14 @@ function make_ics(courses){
     }catch(e){
         console.log(e);
     }
-
-    /*
-    try{
-        alert('making'+ dates)
-        console.log(dates)
-        dates.forEach(event => {
-            cal.addEvent('test','sometihing desc', 'ok', event[0], event[1]);
-        });
-        cal.download();
-    }
-    catch(e){
-        console.log('error');
-    };
-    */
 };
 
 function extract_to_ics(tab){
-            
-    alert('sending message to '+tab.url);
     
     var courses = [];
     
     chrome.tabs.executeScript(tab.id, {file: './js/extract.js'}, function(result){
         courses = result[0];
-        
-        alert(courses==result);
 
         make_ics(courses);
     });
