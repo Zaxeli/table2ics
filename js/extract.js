@@ -89,8 +89,8 @@ function parse_sched(sched){
         e.g. "Su 9:00PM - 12:50PM"
     
     @return:
-        Returns an array with:
-            weekday (str),
+        Returns an object with:
+            weekdays (array of strings),
             starting time (obj),
             ending time(obj)
 
@@ -112,9 +112,16 @@ function parse_sched(sched){
     try{
         sched = sched.split(' ');
 
-        // Push weekday into result.
-        let weekday = days[sched[0]];
-        result.weekday = weekday;
+        // Push array of weekdays into result.
+        let weekdays = [];
+        for(let i=0; i<sched[0].length; i+=2){
+
+            let short_day = sched[0].slice(i,i+2);
+            let long_day = days[short_day];
+            weekdays.push(long_day);
+
+        }
+        result.weekdays = weekdays;
         
         // Parse start time.
         let start_time = parse_time(sched[1]);
@@ -160,7 +167,7 @@ function parse_time(time){
 
         result.hours = parseInt(time[0]);
         result.minutes = parseInt(time[1]);
-        pm = (time[2] == "PM");
+        let pm = (time[2] == "PM");
 
         //  Adjust hours to 24-hr clock 
         if (pm && result.hours<12){
